@@ -36,8 +36,10 @@ struct Polygon
 
 // Regular expressions for each object type
 const std::regex symbols("\\(.*\\)$");
-const std::regex circle_regex("circle");
+const std::regex circle_regex("circle$");
 const std::regex circle_regex_num("\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
+
+
 
 const std::regex triangle_regex("^triangle\\(((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*))\\)$");
 const std::regex polygon_regex("^polygon\\(((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*))(,\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)))*\\)$");
@@ -47,6 +49,7 @@ bool validateCircle(const std::string &input, Circle &circle)
 {
     std::smatch match;
     std::string figureExp = input.substr(0, 6);
+    //std::cout<<input<<" ";
     //std::cout<<figureExp<<" ";
     if (!std::regex_match(figureExp, match, circle_regex))
     {
@@ -140,12 +143,13 @@ bool validateObject(const std::string &input, Polygon &polygon)
 // Main function to test the input validator
 int main()
 {
-    std::cout << "Input params.\nExample:circle(10.0, 2.0, 3)\n 0-Exit" << std::endl;
+    std::cout << "Input params.\nExample:circle(10.0 2.0, 3)\n 0-Exit" << std::endl;
     std::string input;
      while (input != "0")
      {
         std::cout << "Input params.\n" << std::endl;
-        std::cin >> input;
+
+        getline(std::cin,input);
         Circle circle;
         if (validateObject(input, circle))
         {
