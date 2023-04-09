@@ -20,29 +20,11 @@ struct Circle
     double perimeter;
 };
 
-// Triangle structure
-struct Triangle
-{
-    Point p1;
-    Point p2;
-    Point p3;
-};
-
-// Polygon structure
-struct Polygon
-{
-    std::vector<Point> vertices;
-};
-
 // Regular expressions for each object type
 const std::regex symbols("\\(.*\\)$");
 const std::regex circle_regex("circle$");
 const std::regex circle_regex_num("\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
 
-
-
-const std::regex triangle_regex("^triangle\\(((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*))\\)$");
-const std::regex polygon_regex("^polygon\\(((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)),\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*))(,\\s*((\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)))*\\)$");
 
 // Function to validate a circle object
 bool validateCircle(const std::string &input, Circle &circle)
@@ -89,56 +71,12 @@ bool validateCircle(const std::string &input, Circle &circle)
     return true;
 }
 
-// Function to validate a triangle object
-bool validateTriangle(const std::string &input, Triangle &triangle)
-{
-    std::smatch match;
-    if (!std::regex_match(input, match, triangle_regex))
-    {
-        return false;
-    }
-    triangle.p1.x = std::stod(match[2].str());
-    triangle.p1.y = std::stod(match[3].str());
-    triangle.p2.x = std::stod(match[5].str());
-    triangle.p2.y = std::stod(match[6].str());
-    triangle.p3.x = std::stod(match[8].str());
-    triangle.p3.y = std::stod(match[9].str());
-    return true;
-}
-
-// Function to validate a polygon object
-bool validatePolygon(const std::string &input, Polygon &polygon)
-{
-    std::smatch match;
-    if (!std::regex_match(input, match, polygon_regex))
-    {
-        return false;
-    }
-    for (size_t i = 2; i < match.size(); i += 2)
-    {
-        Point point;
-        point.x = std::stod(match[i].str());
-        point.y = std::stod(match[i + 1].str());
-        polygon.vertices.push_back(point);
-    }
-    return true;
-}
-
 // Function to validate an object of any type
 bool validateObject(const std::string &input, Circle &circle)
 {
     return validateCircle(input, circle);
 }
 
-bool validateObject(const std::string &input, Triangle &triangle)
-{
-    return validateTriangle(input, triangle);
-}
-
-bool validateObject(const std::string &input, Polygon &polygon)
-{
-    return validatePolygon(input, polygon);
-}
 
 // Main function to test the input validator
 int main()
