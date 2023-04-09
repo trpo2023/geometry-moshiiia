@@ -1,6 +1,9 @@
 #ifndef CIRCLE
 #define CIRCLE
 #include <iostream>
+#include <regex>
+#include <string.h>
+#include <vector>
 
 // Point structure
 struct Point {

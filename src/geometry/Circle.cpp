@@ -1,8 +1,4 @@
 #include "Circle.h"
-#include <iostream>
-#include <regex>
-#include <string.h>
-#include <vector>
 
 // Function to validate a circle object
 bool validateCircle(const std::string& input, Circle& circle)
