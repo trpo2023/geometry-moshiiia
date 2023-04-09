@@ -1,10 +1,12 @@
-#include <libgeometry/Circle.h>
+#include <regex>
+#include <string.h>
+#include <vector>
+#include <iostream>
+#include "Circle.h"
 
-const std::regex symbols("\\(.*\\)$");
-const std::regex circle_regex("circle$");
-const std::regex circle_regex_num("\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
 
-bool validateObject(const std::string &input, Circle &circle)
+// Function to validate a circle object
+bool validateCircle(const std::string &input, Circle &circle)
 {
     std::smatch match;
     std::string figureExp = input.substr(0, 6);
@@ -46,5 +48,4 @@ bool validateObject(const std::string &input, Circle &circle)
         return false;
     }
     return true;
-    return 0;
 }
