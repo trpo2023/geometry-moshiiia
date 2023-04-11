@@ -1,9 +1,7 @@
 #ifndef CIRCLE
 #define CIRCLE
-#include <iostream>
 #include <regex>
-#include <string.h>
-#include <vector>
+#include <string>
 
 // Point structure
 struct Point {
@@ -23,7 +21,8 @@ struct Circle {
 const std::regex symbols("\\(.*\\)$");
 const std::regex circle_regex("circle$");
 const std::regex circle_regex_num(
-        "\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
+        // "\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
+        R"(\s*(\d+\.?\d*)\s*(\d+\.?\d*),\s*(\d+\.?\d*)$)");
 
 bool validateCircle(const std::string& input, Circle& circle);
 

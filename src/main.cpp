@@ -1,9 +1,6 @@
 #include "geometry/Circle.h"
-#include <bits/stdc++.h>
+#include <iomanip>
 #include <iostream>
-#include <regex>
-#include <string.h>
-#include <vector>
 
 // Main function to test the input validator
 int main()
