@@ -1,40 +1,22 @@
-APP=Projectrpo3
-CC=gcc
-CFLAGS = -Wall -Werror
-CPPFLAGS = -MMD
-
-SRC_DIR = src/geometry
-LIB_DIR = src
+CXX = g++
+CXXFLAGS = -Wall -Wextra -std=c++11
+SRC_DIR = src
 OBJ_DIR = obj
+SRCS = $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-SRC = $(wildcard $(SRC_DIR)/*.cpp)
-OBJ = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC)) 
+all: main
 
-$(APP) : $(OBJ)
-	$(CC) $(OBJ) -o $(APP)
+main: $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJ_DIR)/main.o : $(SRC_DIR)/main.cpp 
-	$(CC) $(SRC_DIR)/main.cpp -o  -I $(LIB_DIR) $(OBJ_DIR)/main.o $(CPPFLAGS)
-
-
-$(OBJ_DIR)/Circle.o : $(SRC_DIR)/Circle.cpp 
-	$(CC) -c $< -o -I $(LIB_DIR) $@ $(CPPFLAGS)
-
-
-$(OBJ_DIR)/Point.o : $(SRC_DIR)/Point.cpp 
-	$(CC) -c $< -o -I $(LIB_DIR) $@ $(CPPFLAGS)
-
-#общий вид
-#$(SRC_DIR)/%.o : $(OBJ_DIR)/%.cpp\
-#	$(CC) -c $< -o $@ $(FLAGS)\
-#$<- слева $@ - справа
-
-
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 go:
-	./$(APP)
-
+	./main
 clean:
-	rm $(APP) $(OBJ_DIR)/*.o 
+	rm -rf $(OBJ_DIR) main
 
-.PHONY: clean
+.PHONY: all clean
