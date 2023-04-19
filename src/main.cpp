@@ -2,6 +2,10 @@
 #include <iomanip>
 #include <iostream>
 
+enum ERROR { 
+ 
+};
+
 // Main function to test the input validator
 int main()
 {
@@ -17,16 +21,25 @@ int main()
         std::cout << "Input params.\n" << std::endl;
         std::string input;
         getline(std::cin, input);
-        if (validateCircle(input, arr[i])) {
-            std::cout << "Valid circle: area = " << std::setprecision(3)
+
+        switch (validateCircle(input, arr[i]))
+        {
+        case 1: std::cout << "Error at column " << ": expected 'circle'" << std::endl;
+            break;
+        case 2: std::cout << "Error at column " <<  ": ( or )" << std::endl;
+            break;
+        case 3: std::cout << "Error at column " <<  ": expected <double>" << std::endl;
+            break;
+        case 4: std::cout << "Error at column " << ": expected <double><double><double>"<< std::endl;
+            break;
+        case 5: std::cout << "Valid circle: area = " << std::setprecision(3)
                       << arr[i].area << ", perimeter = " << std::setprecision(3)
                       << arr[i].perimeter << "." << std::endl;
-        } else {
-            std::cout << "Invalid input" << std::endl;
+            break;
         }
-        std::cout << std::endl;
+        //std::cout << arr[i].validate; 
      }
-
+    
     isIntersection(arr, n) ? std::cout << "Intersection!\n" : std::cout << "No intersection!\n";
     return 0;
 }

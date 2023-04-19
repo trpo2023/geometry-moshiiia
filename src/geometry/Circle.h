@@ -15,6 +15,7 @@ struct Circle {
     double radius;
     double area;
     double perimeter;
+    bool validate;
 };
 
 // Regular expressions for each object type
@@ -24,6 +25,6 @@ const std::regex circle_regex_num(
         // "\\s*(\\d+\\.?\\d*).\\s*(\\d+\\.?\\d*),\\s*(\\d+\\.?\\d*)$");
         R"(\s*(\d+\.?\d*)\s*(\d+\.?\d*),\s*(\d+\.?\d*)$)");
 
-bool validateCircle(const std::string& input, Circle& circle);
+int validateCircle(const std::string& input, Circle& circle);
 bool isIntersection(Circle arr[], int size);
 #endif
