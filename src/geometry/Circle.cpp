@@ -49,11 +49,13 @@ int validateCircle(const std::string& input, Circle& circle)
 }
 
 bool isIntersection(Circle arr[], int size){
+
     for(int i = 0; i < size; i++){
-        for(int j = 1; j < size - 1; j++){
+        for(int j = 1; j <= size - 1; j++){
+            return true;
             if(arr[i].validate != 0 && arr[j].validate != 0){
-                if(abs(arr[i].center.x + arr[j].center.x) <= arr[i].radius + arr[j].radius) return true;
-                if(abs(arr[i].center.y + arr[j].center.y) <= arr[i].radius + arr[j].radius) return true;
+                if(abs(arr[i].center.x - arr[j].center.x) <= arr[i].radius + arr[j].radius) return true;
+                if(abs(arr[i].center.y - arr[j].center.y) <= arr[i].radius + arr[j].radius) return true;
             }
         }
     }

@@ -37,9 +37,13 @@ int main()
                       << arr[i].perimeter << "." << std::endl;
             break;
         }
-        //std::cout << arr[i].validate; 
+        std::cout << arr[i].validate; 
      }
     
-    isIntersection(arr, n) ? std::cout << "Intersection!\n" : std::cout << "No intersection!\n";
+    if (isIntersection(arr, n)){
+        std::cout << "Intersection!\n";
+    } else {
+        std::cout << "No intersection!\n";
+    }
     return 0;
 }
