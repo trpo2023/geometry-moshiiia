@@ -1,6 +1,7 @@
 #include "Circle.h"
-
 #include <iostream>
+#include <vector>
+#include <cmath>
 
 // Function to validate a circle object
 bool validateCircle(const std::string& input, Circle& circle)
@@ -46,4 +47,14 @@ bool validateCircle(const std::string& input, Circle& circle)
         return false;
     }
     return true;
+}
+
+bool isIntersection(Circle arr[], int size){
+    for(int i = 0; i < size; i++){
+        for(int j = 1; j < size - 1; j++){
+            if(abs(arr[i].center.x + arr[j].center.x) <= arr[i].radius + arr[j].radius) return true;
+            if(abs(arr[i].center.y + arr[j].center.y) <= arr[i].radius + arr[j].radius) return true;
+        }
+    }
+    return false;
 }

@@ -25,5 +25,5 @@ const std::regex circle_regex_num(
         R"(\s*(\d+\.?\d*)\s*(\d+\.?\d*),\s*(\d+\.?\d*)$)");
 
 bool validateCircle(const std::string& input, Circle& circle);
-
+bool isIntersection(Circle arr[], int size);
 #endif

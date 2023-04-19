@@ -8,14 +8,14 @@ int main()
     int n = 0;
     std::cout << "Input count of figures:";
     std:: cin >> n;
+    std::cin.ignore();
     Circle *arr = new Circle[n];
+    std::cout << n;
+    std::cout << "Input params.\nExample:circle(10.0 2.0, 3)\n 0-Exit" << std::endl;
     
-    std::cout << "Input params.\nExample:circle(10.0 2.0, 3)\n 0-Exit"
-              << std::endl;
-    
-    for (int i=0; i < n; i++){
+    for (int i = 0; i < n; i++){
         std::cout << "Input params.\n" << std::endl;
-        std::string input; 
+        std::string input;
         getline(std::cin, input);
         if (validateCircle(input, arr[i])) {
             std::cout << "Valid circle: area = " << std::setprecision(3)
@@ -26,5 +26,7 @@ int main()
         }
         std::cout << std::endl;
      }
+
+    isIntersection(arr, n) ? std::cout << "Intersection!\n" : std::cout << "No intersection!\n";
     return 0;
 }
