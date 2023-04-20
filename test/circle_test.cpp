@@ -8,7 +8,7 @@
 TEST(CIRCLE, isIntersection)
 {
     Circle arrTrue[2];
-   
+
     arrTrue[0].center.x = 10;
     arrTrue[0].center.y = 10;
     arrTrue[0].radius = 10;
@@ -44,13 +44,13 @@ TEST(CIRCLE, validateCircle)
 
     int a = validateCircle(examp1, circle1);
     ASSERT_EQ(a, 5);
-    
+
     a = validateCircle(examp2, circle2);
     ASSERT_EQ(a, 1);
 
     a = validateCircle(examp3, circle3);
     ASSERT_EQ(a, 2);
-    
+
     a = validateCircle(examp4, circle4);
     ASSERT_EQ(a, 4);
 }
