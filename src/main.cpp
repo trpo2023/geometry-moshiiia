@@ -37,7 +37,7 @@ int main()
                       << arr[i].perimeter << "." << std::endl;
             break;
         }
-        std::cout << arr[i].validate; 
+        //std::cout << arr[i].validate; 
      }
     
     if (isIntersection(arr, n)){
