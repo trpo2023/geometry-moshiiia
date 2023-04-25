@@ -27,8 +27,11 @@ $(USER_DIR_S)/main.o: src/main.cpp
 $(USER_DIR_S)/circle.o: src/circle.cpp
 	g++ $(FLAGS) -c src/circle.cpp -o $(USER_DIR_S)/circle.o
 
-$(TESTS): $(USER_DIR_T)/circle_test.o  $(USER_DIR_S)/circle.o
-	g++ $(GFLAGS) $(LDFLAGS) -L$(GTEST_DIR)/lib -l gtest_main -l gtest -lpthread $(USER_DIR_T)/circle_test.o $(USER_DIR_S)/circle.o -o $(TESTS)
+$(USER_DIR_S)/circle.a: $(USER_DIR_S)/circle.o
+	ar rcs $@ $^
+
+$(TESTS): $(USER_DIR_T)/circle_test.o  $(USER_DIR_S)/circle.a
+	g++ $(GFLAGS) $(LDFLAGS) -L$(GTEST_DIR)/lib -l gtest_main -l gtest -lpthread $(USER_DIR_T)/circle_test.o $(USER_DIR_S)/circle.a -o $(TESTS)
 
 
 $(USER_DIR_T)/circle_test.o: test/circle_test.cpp

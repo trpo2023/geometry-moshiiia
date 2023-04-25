@@ -5,6 +5,8 @@
 *.dll
 *.exe
 *.o
+bin/
+build/
 *.so
 main
 .idea/*
